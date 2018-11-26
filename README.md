@@ -21,7 +21,8 @@ Methods are simply called statically (``` Log.<Methodname>``` ), no instance req
 
 (4)  log something by calling on of these
 
-```     Log.Info("string")         
+```     
+        Log.Info("string")         
         Log.Error("string")         
         Log.Error(<instance of System.Exception>)         
         Log.Critical("string") 
