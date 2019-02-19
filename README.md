@@ -19,7 +19,7 @@ Methods are simply called statically (``` Log.<Methodname>``` ), no instance req
 
 (3.4) optional: Set a log pattern. By default ``` {datetime}\t{type}\t{message}```  is used. You can use these variables (with {braces} to set your own pattern by calling Log.SetPattern
 
-(4)  log something by calling on of these
+(4)  log something by calling one of these
 
 ```     
         Log.Info("string")         
