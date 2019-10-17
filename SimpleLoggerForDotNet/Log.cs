@@ -3,7 +3,7 @@ using System.IO;
 
 namespace SimpleLoggerForDotNet
 {
-	public class Log
+	public class Log  
 	{
 		
 		static Log instance = new Log();
@@ -19,10 +19,8 @@ namespace SimpleLoggerForDotNet
 		private Log() {
 			
 		}
-		
-		~Log() {
-			logwriter.Close();
-		}
+
+      
 		
 		private void CheckInit() {
 			if(filepath == null) {
@@ -46,10 +44,12 @@ namespace SimpleLoggerForDotNet
 				Log.instance.filepath = filepath + ".log";
 			
 			if(synchronized)
-				Log.instance.logwriter = TextWriter.Synchronized(new StreamWriter(new FileStream(filepath,FileMode.OpenOrCreate|FileMode.Append, FileAccess.Write, FileShare.None)));
+				Log.instance.logwriter = TextWriter.Synchronized(new StreamWriter(filepath, true, System.Text.Encoding.UTF8, 1024));
 			else
-				Log.instance.logwriter = new StreamWriter(new FileStream(filepath,FileMode.OpenOrCreate|FileMode.Append, FileAccess.Write, FileShare.None));
-		}
+				Log.instance.logwriter = new StreamWriter(filepath,true,System.Text.Encoding.UTF8,1024);   
+
+
+        }
 		
 		public static void SetPattern(string pattern) {
 			Log.instance.pattern = pattern;
@@ -169,6 +169,11 @@ namespace SimpleLoggerForDotNet
                                .Replace(MESSAGE, exception.ToString())
                               );
 		}
-		
-	}
+
+        public static void Close()
+        {
+            instance.logwriter.Flush();
+            instance.logwriter.Close();
+        }
+    }
 }
