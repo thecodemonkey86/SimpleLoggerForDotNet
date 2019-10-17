@@ -30,7 +30,7 @@ namespace SimpleLoggerForDotNet
 			}
 		}
 		
-		public static void Init(string filepath,bool synchronized) {
+		public static void Init(string filepath,bool synchronized=false) {
 			Init(filepath, synchronized, 0L);
 		}
 		
